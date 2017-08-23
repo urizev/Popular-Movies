@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<resources>
+    <string-array name="sort_by_options">
+        <item>By popularity</item>
+        <item>By rating</item>
+    </string-array>
+</resources>

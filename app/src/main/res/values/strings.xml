@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Movies Udacity</string>
+
+    <string name="connection_error">Connection error</string>
+    <string name="press_to_try_again">Press to try again</string>
+    <string name="loading">Loading…</string>
+    <string name="action_sort">Sort by</string>
+
+</resources>
