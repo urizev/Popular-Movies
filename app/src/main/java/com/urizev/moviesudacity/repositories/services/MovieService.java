@@ -2,8 +2,10 @@ package com.urizev.moviesudacity.repositories.services;
 
 import com.urizev.moviesudacity.repositories.MovieRepository;
 import com.uwetrottmann.tmdb2.Tmdb;
+import com.uwetrottmann.tmdb2.entities.AppendToResponse;
 import com.uwetrottmann.tmdb2.entities.Movie;
 import com.uwetrottmann.tmdb2.entities.MovieResultsPage;
+import com.uwetrottmann.tmdb2.enumerations.AppendToResponseItem;
 import com.uwetrottmann.tmdb2.services.MoviesService;
 
 import java.util.Locale;
@@ -14,6 +16,8 @@ import io.reactivex.schedulers.Schedulers;
 import retrofit2.Call;
 
 public class MovieService {
+    private static final AppendToResponse EXTRA_INFO =
+            new AppendToResponse(AppendToResponseItem.VIDEOS, AppendToResponseItem.REVIEWS);
     private final MoviesService movieService;
 
     public MovieService(Tmdb tmdb) {
@@ -24,13 +28,14 @@ public class MovieService {
                     @Override
                     public MovieResultsPage call() throws Exception {
                         Call<MovieResultsPage> call;
+                        String lang = getLanguage();
                         switch (list) {
                             case MovieRepository.TOP_RATED:
-                                call = movieService.topRated(page, Locale.getDefault().getLanguage());
+                                call = movieService.topRated(page, lang);
                                 break;
                             case MovieRepository.POPULAR:
                             default:
-                                call = movieService.popular(page, Locale.getDefault().getLanguage());
+                                call = movieService.popular(page, lang);
                         }
 
                         return call.execute().body();
@@ -45,12 +50,16 @@ public class MovieService {
                     @Override
                     public Movie call() throws Exception {
                         return movieService
-                                .summary(movieId, Locale.getDefault().getLanguage())
+                                .summary(movieId, getLanguage(), EXTRA_INFO)
                                 .execute()
                                 .body();
                     }
                 })
                 .observeOn(Schedulers.io())
                 .subscribeOn(Schedulers.io());
+    }
+
+    private String getLanguage() {
+        return Locale.getDefault().getLanguage();
     }
 }

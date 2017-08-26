@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                                             xmlns:app="http://schemas.android.com/apk/res-auto"
+                                             xmlns:tools="http://schemas.android.com/tools"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content">
+
+    <android.support.v7.widget.AppCompatImageView
+        android:id="@+id/screenshot"
+        android:layout_width="64dp"
+        android:layout_height="48dp"
+        android:layout_marginEnd="@dimen/space_m"
+        android:layout_marginLeft="16dp"
+        android:layout_marginStart="@dimen/space_m"
+        android:layout_marginTop="8dp"
+        android:background="@color/colorPrimaryLight"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:src="@drawable/trailer_1"/>
+
+    <TextView
+        android:id="@+id/title"
+        style="@style/TextAppearance.AppCompat.Subhead"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/space_m"
+        android:layout_marginLeft="@dimen/space_m"
+        android:layout_marginRight="@dimen/space_m"
+        android:layout_marginStart="@dimen/space_m"
+        android:layout_marginTop="@dimen/space_none"
+        android:fontFamily="sans-serif-condensed"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintLeft_toRightOf="@+id/screenshot"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/screenshot"
+        tools:text="Trailer 1 de la pelicula de la que estamos hablando"/>
+
+    <TextView
+        android:id="@+id/subtitle"
+        tools:text="YouTube"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:layout_marginStart="@dimen/space_none"
+        android:fontFamily="sans-serif-light"
+        android:textSize="14sp"
+        android:paddingBottom="@dimen/space_s"
+        android:layout_marginLeft="@dimen/space_none"
+        app:layout_constraintTop_toBottomOf="@+id/title"
+        app:layout_constraintLeft_toLeftOf="@+id/title"
+        />
+
+</android.support.constraint.ConstraintLayout>

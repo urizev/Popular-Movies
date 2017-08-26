@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.ActionBar;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -49,6 +50,10 @@ public class MovieListFragment extends MVPFragment<MovieListPresenter,MovieListV
     @Override
     protected void renderViewState(MovieListViewState viewState) {
         Timber.d("Render viewState: " + viewState);
+        ActionBar actionBar = ((MainActivity) getActivity()).getSupportActionBar();
+        if (actionBar != null) {
+            actionBar.setTitle(viewState.title);
+        }
         if (viewState.loading) {
             this.renderLoading ();
         }
@@ -88,7 +93,7 @@ public class MovieListFragment extends MVPFragment<MovieListPresenter,MovieListV
     @Override
     public MovieListPresenter createPresenter(Bundle savedInstanceState) {
         DepProvider provider = DepProvider.getInstance();
-        return new MovieListPresenter(provider.provideMovieRepository(), provider.provideSettingsProvider());
+        return new MovieListPresenter(provider.getApplicationContext(), provider.provideMovieRepository(), provider.provideSettingsProvider());
     }
 
     @OnClick(R.id.error)

@@ -8,10 +8,12 @@ class MovieListViewState implements ViewState {
     final Throwable throwable;
     final List<MovieViewState> listViewState;
     final boolean loading;
+    final String title;
 
-    MovieListViewState(List<MovieViewState> movieViewStates, boolean loading, Throwable throwable) {
+    MovieListViewState(String title, List<MovieViewState> movieViewStates, boolean loading, Throwable throwable) {
         this.listViewState = movieViewStates;
         this.throwable = throwable;
         this.loading = loading;
+        this.title = title;
     }
 }

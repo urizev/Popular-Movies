@@ -1,5 +1,8 @@
 package com.urizev.moviesudacity.view.main;
 
+import android.content.Context;
+
+import com.urizev.moviesudacity.R;
 import com.urizev.moviesudacity.providers.SettingsProvider;
 import com.urizev.moviesudacity.repositories.MovieRepository;
 import com.urizev.moviesudacity.view.common.Presenter;
@@ -23,7 +26,7 @@ class MovieListPresenter extends Presenter<MovieListViewState> {
     private final BehaviorProcessor<MovieListModel> model;
     private Disposable loadMovieDisposable;
 
-    MovieListPresenter(MovieRepository movieRepository, SettingsProvider settingsProvider) {
+    MovieListPresenter(final Context context, MovieRepository movieRepository, SettingsProvider settingsProvider) {
         int listType = settingsProvider.getListType();
         this.model = BehaviorProcessor.createDefault(MovieListModel.newModelWidthListType(listType));
         this.movieRepository = movieRepository;
@@ -63,7 +66,23 @@ class MovieListPresenter extends Presenter<MovieListViewState> {
                                 .map(new Function<List<MovieViewState>, MovieListViewState>() {
                                     @Override
                                     public MovieListViewState apply(@NonNull List<MovieViewState> movieViewStates) throws Exception {
-                                        return new MovieListViewState(movieViewStates, model.loading, model.error);
+
+                                        String title;
+                                        switch (model.listType) {
+                                            case MovieRepository.FAVORITES:
+                                                title = context.getString(R.string.favorites);
+                                                break;
+                                            case MovieRepository.POPULAR:
+                                                title = context.getString(R.string.popular);
+                                                break;
+                                            case MovieRepository.TOP_RATED:
+                                                title = context.getString(R.string.top_rated);
+                                                break;
+                                            default:
+                                                title = "";
+                                                break;
+                                        }
+                                        return new MovieListViewState(title, movieViewStates, model.loading, model.error);
                                     }
                                 }).blockingGet();
                     }

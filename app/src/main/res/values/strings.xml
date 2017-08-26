@@ -5,5 +5,11 @@
     <string name="press_to_try_again">Press to try again</string>
     <string name="loading">Loading…</string>
     <string name="action_sort">Sort by</string>
+    <string name="mark_as_favorite">Mark as favorite</string>
+    <string name="trailers_header">Trailers</string>
+    <string name="reviews_header">Reviews</string>
+    <string name="favorites">Favorites</string>
+    <string name="popular">Popular</string>
+    <string name="top_rated">Top rated</string>
 
 </resources>

@@ -1,0 +1,27 @@
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    tools:context=".view.detail.DetailFragment">
+
+    <TextView
+        android:id="@+id/plot"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/space_m"
+        android:layout_marginTop="@dimen/space_m"
+        android:layout_marginBottom="@dimen/space_s"
+        android:layout_marginLeft="@dimen/space_m"
+        android:layout_marginStart="@dimen/space_m"
+        android:layout_marginRight="@dimen/space_m"
+        android:layout_marginEnd="@dimen/space_m"
+        android:textColor="?android:attr/textColorPrimary"
+        android:background="@color/colorPrimaryLight"
+        android:lineSpacingMultiplier="1.2"
+        android:fontFamily="sans-serif-light"
+        tools:text="This is the plot of the movie. It has quite a few mysteries which are supposed to be solved at the end"
+        app:layout_constraintVertical_bias="0.0"/>
+
+</FrameLayout>

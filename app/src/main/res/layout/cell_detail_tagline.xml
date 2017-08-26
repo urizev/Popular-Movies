@@ -1,0 +1,19 @@
+<TextView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/outline"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    tools:text="This is the outline of the movie"
+    android:gravity="center"
+    android:textStyle="italic"
+    style="@style/TextAppearance.AppCompat.Subhead"
+    android:paddingTop="@dimen/space_xs"
+    android:paddingBottom="@dimen/space_xs"
+    android:paddingRight="@dimen/space_m"
+    android:paddingEnd="@dimen/space_m"
+    android:paddingLeft="@dimen/space_m"
+    android:paddingStart="@dimen/space_m"
+    tools:context=".view.detail.DetailFragment">
+
+</TextView>

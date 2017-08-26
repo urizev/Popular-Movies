@@ -33,13 +33,13 @@ public class DepProvider {
     }
 
 
-    public void setApplicationContext(Context context) {
+    void setApplicationContext(Context context) {
         this.context = context;
     }
 
     public MovieRepository provideMovieRepository() {
         if (movieRepository == null) {
-            movieRepository = new MovieRepository(provideMovieCache(), provideMovieService());
+            movieRepository = new MovieRepository(context, provideMovieCache(), provideMovieService());
         }
         return movieRepository;
     }
@@ -84,5 +84,9 @@ public class DepProvider {
             settingsProvider = new SettingsProvider(context);
         }
         return settingsProvider;
+    }
+
+    public Context getApplicationContext() {
+        return context;
     }
 }
