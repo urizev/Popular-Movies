@@ -3,6 +3,7 @@ package com.urizev.moviesudacity.view.main;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.ActionBar;
@@ -28,6 +29,7 @@ import timber.log.Timber;
  * A simple {@link Fragment} subclass.
  */
 public class MovieListFragment extends MVPFragment<MovieListPresenter,MovieListViewState> implements MovieListAdapter.MovieListAdapterListener {
+    private static final String KEY_LIST_STATE = "listState";
     @BindView(R.id.content) protected RecyclerView contentView;
     @BindView(R.id.loading) protected LoadingView loadingView;
     @BindView(R.id.error) protected ErrorView errorView;
@@ -41,6 +43,10 @@ public class MovieListFragment extends MVPFragment<MovieListPresenter,MovieListV
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         ButterKnife.bind(this, view);
         renderLoading();
+        if (savedInstanceState != null && savedInstanceState.containsKey(KEY_LIST_STATE)) {
+            Parcelable listState = savedInstanceState.getParcelable(KEY_LIST_STATE);
+            contentView.getLayoutManager().onRestoreInstanceState(listState);
+        }
         contentView.setAdapter(adapter);
         PagerScrollListener pageListener = new PagerScrollListener((GridLayoutManager) contentView.getLayoutManager());
         contentView.addOnScrollListener(pageListener);
@@ -88,6 +94,13 @@ public class MovieListFragment extends MVPFragment<MovieListPresenter,MovieListV
     @Override
     public int getLayoutRes() {
         return R.layout.fragment_movie_list;
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        Parcelable listState = contentView.getLayoutManager().onSaveInstanceState();
+        outState.putParcelable(KEY_LIST_STATE, listState);
+        super.onSaveInstanceState(outState);
     }
 
     @Override

@@ -20,6 +20,12 @@ public abstract class MVPFragment<P extends Presenter<VS>, VS extends ViewState>
     protected CompositeDisposable disposables;
 
     @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setRetainInstance(true);
+    }
+
+    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         return inflater.inflate(this.getLayoutRes(), container, false);
@@ -31,7 +37,10 @@ public abstract class MVPFragment<P extends Presenter<VS>, VS extends ViewState>
 
         disposables = new CompositeDisposable();
 
-        presenter = createPresenter(savedInstanceState);
+        if (presenter == null) {
+            presenter = createPresenter(savedInstanceState);
+        }
+
         addDisposable(presenter.viewStateObservable()
                 .subscribeOn(Schedulers.computation())
                 .observeOn(AndroidSchedulers.mainThread())

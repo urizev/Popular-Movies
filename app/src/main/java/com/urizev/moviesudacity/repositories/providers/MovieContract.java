@@ -10,6 +10,8 @@ public final class MovieContract {
 
     static final String MOVIE_PATH = "movies";
 
+    private MovieContract() {}
+
     public final static class FavoriteMovieEntry implements BaseColumns {
         public static final Uri CONTENT_URI = BASE_CONTENT_URI.buildUpon().appendPath(MOVIE_PATH).build();
 
@@ -17,5 +19,7 @@ public final class MovieContract {
 
         public static final String POSTER_PATH = "poster_path";
         public static final String TITLE = "title";
+
+        private FavoriteMovieEntry() {}
     }
 }

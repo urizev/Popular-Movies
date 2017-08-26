@@ -4,7 +4,7 @@ import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.util.Locale;
 
-public class FormatUtils {
+public final class FormatUtils {
     private static final NumberFormat RATING_FORMAT = DecimalFormat.getNumberInstance(Locale.getDefault());
 
     public static String formatDuration(int runtime) {

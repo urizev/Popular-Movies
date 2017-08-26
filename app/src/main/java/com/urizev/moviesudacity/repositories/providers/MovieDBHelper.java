@@ -23,6 +23,6 @@ class MovieDBHelper extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int i, int i1) {
-
+        // Since this is the first version, no upgrade is needed
     }
 }
